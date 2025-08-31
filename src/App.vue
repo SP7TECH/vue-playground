@@ -1,4 +1,5 @@
 <script>
+import CharacterList from './components/CharacterList.vue'
 import FavouriteCharacters from './components/FavouriteCharacters.vue'
 
 export default {
@@ -43,6 +44,7 @@ export default {
   },
   components: {
     FavouriteCharacters,
+    CharacterList,
   },
 }
 </script>
@@ -61,6 +63,8 @@ export default {
   </div>
 
   <button v-on:click="addCharacter">Add Character</button>
+
+  <CharacterList :characters="characters" />
 
   <h3>Average Age of Characters: {{ calcAverageAge }}</h3>
 
