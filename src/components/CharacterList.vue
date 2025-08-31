@@ -5,6 +5,12 @@ export default {
       type: Array,
     },
   },
+  emits: ['favourite'],
+  methods: {
+    favouriteCharacter(character) {
+      this.$emit('favourite', character)
+    },
+  },
 }
 </script>
 
@@ -13,7 +19,7 @@ export default {
   <ul v-if="characters.length">
     <li v-for="character in characters">
       {{ character.name }}
-      <button v-on:click="markAsFavourite(character)">Mark as favourite</button>
+      <button @click="favouriteCharacter(character)">Mark as favourite</button>
     </li>
   </ul>
   <p v-else>No characters found</p>

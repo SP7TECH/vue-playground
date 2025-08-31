@@ -38,8 +38,8 @@ export default {
     handleCharacterAgeChange(e) {
       this.newCharacter.age = e.target.value
     },
-    markAsFavourite(name) {
-      this.favourites.push(name)
+    markAsFavourite(payload) {
+      this.favourites.push(payload.name)
     },
   },
   components: {
@@ -64,7 +64,7 @@ export default {
 
   <button v-on:click="addCharacter">Add Character</button>
 
-  <CharacterList :characters="characters" />
+  <CharacterList :characters="characters" @favourite="markAsFavourite" />
 
   <h3>Average Age of Characters: {{ calcAverageAge }}</h3>
 
@@ -75,6 +75,5 @@ export default {
   </p>
 
   <hr />
-
   <FavouriteCharacters :favourites="favourites" />
 </template>
