@@ -86,6 +86,6 @@ export default {
   <BaseLayout>
     <template v-slot:sidebar>Side Bar</template>
 
-    <template v-slot:content>Main Content</template>
+    <template #content>Main Content</template>
   </BaseLayout>
 </template>
