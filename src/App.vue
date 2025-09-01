@@ -1,4 +1,6 @@
 <script>
+import BaseButton from './components/BaseButton.vue'
+import BaseLayout from './components/BaseLayout.vue'
 import CharacterList from './components/CharacterList.vue'
 import FavouriteCharacters from './components/FavouriteCharacters.vue'
 
@@ -45,12 +47,16 @@ export default {
   components: {
     FavouriteCharacters,
     CharacterList,
+    BaseButton,
+    BaseLayout,
   },
 }
 </script>
 
 <template>
   <h1>Exercises</h1>
+
+  <BaseButton>Cancel</BaseButton>
 
   <h2>{{ movieName }}</h2>
 
@@ -76,4 +82,10 @@ export default {
 
   <hr />
   <FavouriteCharacters :favourites="favourites" />
+
+  <BaseLayout>
+    <template v-slot:sidebar>Side Bar</template>
+
+    <template v-slot:content>Main Content</template>
+  </BaseLayout>
 </template>
