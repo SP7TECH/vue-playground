@@ -1,9 +1,31 @@
 <script>
+import { ref } from 'vue'
 import PokedexPage from './components/PokedexPage.vue'
 import TodosPage from './components/TodosPage.vue'
 import UsersPage from './components/UsersPage.vue'
 
 export default {
+  setup() {
+    const playerName = 'Virat Kohli'
+    const runsInOdi = 8000
+    const runsInOdiReactive = ref(8000)
+
+    function incrementRunBy4() {
+      return runsInOdi + 4
+    }
+
+    function incrementRunBy6() {
+      return (runsInOdiReactive.value += 6)
+    }
+
+    return {
+      playerName,
+      runsInOdi,
+      runsInOdiReactive,
+      incrementRunBy4,
+      incrementRunBy6,
+    }
+  },
   data() {
     return {
       page: 'Pokedex',
@@ -34,6 +56,13 @@ export default {
 </script>
 
 <template>
+  <h1>Composition API</h1>
+
+  <h3>{{ playerName }}</h3>
+  <p>Runs in ODI: {{ runsInOdi }} | {{ runsInOdiReactive }}</p>
+  <button @click="incrementRunBy4">Increment Run by 4</button>
+  <button @click="incrementRunBy6">Increment Run by 6</button>
+
   <h1>Pages</h1>
 
   <div>

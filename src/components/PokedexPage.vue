@@ -21,5 +21,5 @@ export default {
   <pre>
     {{ pokedex }}
   </pre>
-  <button @click="fetchPokemon">Fetch Pokemon</button>
+  <!-- <button @click="fetchPokemon">Fetch Pokemon</button> -->
 </template>
