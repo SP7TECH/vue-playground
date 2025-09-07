@@ -1,20 +1,34 @@
 <script>
+import PokedexPage from './components/PokedexPage.vue'
+import TodosPage from './components/TodosPage.vue'
+import UsersPage from './components/UsersPage.vue'
+
 export default {
-  data: () => ({
-    pokedex: [1, 2, 3],
-  }),
-  methods: {
-    async fetchPokemon() {
-      this.pokedex = await fetch('https://pokeapi.co/api/v2/pokemon?limit=5').then((response) =>
-        response.json(),
-      )
-    },
+  data() {
+    return {
+      page: 'Pokedex',
+    }
   },
   computed: {
-    renderPage() {},
+    renderPage() {
+      return this.page + 'Page'
+    },
   },
-  created() {
-    this.fetchPokemon()
+  components: {
+    PokedexPage,
+    TodosPage,
+    UsersPage,
+  },
+  methods: {
+    handlePokedexPage() {
+      this.page = 'Pokedex'
+    },
+    handleUsersPage() {
+      this.page = 'Users'
+    },
+    handleTodoPage() {
+      this.page = 'Todos'
+    },
   },
 }
 </script>
@@ -23,16 +37,22 @@ export default {
   <h1>Pages</h1>
 
   <div>
-    <span style="margin-right: 20px">Users</span>
-    <span>Todos</span>
-    <span>Users</span>
+    <button class="nav-btn" @click="handlePokedexPage">Pokedex</button>
+    <button class="nav-btn" @click="handleUsersPage">Users</button>
+    <button class="nav-btn" @click="handleTodoPage">Todos</button>
   </div>
 
-  <component is="renderPage" />
+  <!-- <PokedexPage v-if="page === 'PokedexPage'" /> -->
 
-  <h1>Pokemon</h1>
-  <pre>
-    {{ pokedex }}
-  </pre>
-  <button @click="fetchPokemon">Fetch Pokemon</button>
+  <component :is="renderPage" />
 </template>
+
+<style>
+.nav-btn {
+  cursor: pointer;
+}
+
+.nav-btn:not(:last-child) {
+  margin-right: 20px;
+}
+</style>
