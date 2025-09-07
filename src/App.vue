@@ -1,5 +1,5 @@
 <script>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import PokedexPage from './components/PokedexPage.vue'
 import TodosPage from './components/TodosPage.vue'
 import UsersPage from './components/UsersPage.vue'
@@ -9,6 +9,9 @@ export default {
     const playerName = 'Virat Kohli'
     const runsInOdi = 8000
     const runsInOdiReactive = ref(8000)
+    let state = reactive({
+      pokemons: [],
+    })
 
     function incrementRunBy4() {
       return runsInOdi + 4
@@ -18,12 +21,20 @@ export default {
       return (runsInOdiReactive.value += 6)
     }
 
+    async function fetchPokemon() {
+      state.pokemons = await fetch('https://pokeapi.co/api/v2/pokemon?limit=2').then((response) =>
+        response.json(),
+      )
+    }
+
     return {
       playerName,
       runsInOdi,
       runsInOdiReactive,
       incrementRunBy4,
       incrementRunBy6,
+      state,
+      fetchPokemon,
     }
   },
   data() {
@@ -62,6 +73,9 @@ export default {
   <p>Runs in ODI: {{ runsInOdi }} | {{ runsInOdiReactive }}</p>
   <button @click="incrementRunBy4">Increment Run by 4</button>
   <button @click="incrementRunBy6">Increment Run by 6</button>
+
+  <pre>{{ state.pokemons }}</pre>
+  <button @click="fetchPokemon">Fetch Pokemons</button>
 
   <h1>Pages</h1>
 
