@@ -1,5 +1,5 @@
 <script>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import PokedexPage from './components/PokedexPage.vue'
 import TodosPage from './components/TodosPage.vue'
 import UsersPage from './components/UsersPage.vue'
@@ -13,6 +13,7 @@ export default {
     let state = reactive({
       pokemons: [],
     })
+    const headingColor = ref('#f40')
 
     function incrementRunBy4() {
       return runsInOdi + 4
@@ -36,6 +37,7 @@ export default {
       incrementRunBy6,
       state,
       fetchPokemon,
+      headingColor,
     }
   },
   data() {
@@ -70,6 +72,9 @@ export default {
 <template>
   <h1>Composition API</h1>
 
+  <p>Heading Color</p>
+  <input type="color" v-model="headingColor" />
+
   <h3>{{ playerName }}</h3>
   <p>Runs in ODI: {{ runsInOdi }} | {{ runsInOdiReactive }}</p>
   <button @click="incrementRunBy4">Increment Run by 4</button>
@@ -92,6 +97,10 @@ export default {
 </template>
 
 <style>
+h1 {
+  color: v-bind(headingColor);
+}
+
 .nav-btn {
   cursor: pointer;
 }
