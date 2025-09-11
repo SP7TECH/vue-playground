@@ -1,4 +1,5 @@
 <script setup>
+import { runsInOdiReactive } from '@/composables/runsStore'
 import { ref } from 'vue'
 
 const pokedex = ref([])
@@ -12,6 +13,10 @@ fetchPokemon()
 
 <template>
   <h1>Pokemon</h1>
+
+  <h2>Runs Scored</h2>
+  <h3>Runs by Virat: {{ runsInOdiReactive }}</h3>
+
   <pre>
     {{ pokedex }}
   </pre>

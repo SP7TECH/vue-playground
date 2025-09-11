@@ -1,14 +1,15 @@
 <script>
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import PokedexPage from './components/PokedexPage.vue'
 import TodosPage from './components/TodosPage.vue'
 import UsersPage from './components/UsersPage.vue'
+import { runsInOdiReactive } from './composables/runsStore'
 
 export default {
   setup() {
     const playerName = 'Virat Kohli'
     const runsInOdi = 8000
-    const runsInOdiReactive = ref(8000)
+    // const runsInOdiReactive = ref(8000)
     let state = reactive({
       pokemons: [],
     })
