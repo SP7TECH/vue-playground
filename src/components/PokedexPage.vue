@@ -22,3 +22,9 @@ fetchPokemon()
   </pre>
   <!-- <button @click="fetchPokemon">Fetch Pokemon</button> -->
 </template>
+
+<style scoped>
+h1 {
+  color: #f40;
+}
+</style>
