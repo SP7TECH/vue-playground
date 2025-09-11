@@ -19,9 +19,15 @@ export default {
 </script>
 
 <template>
-  <h1>Users</h1>
+  <h1 :class="$style.heading">Users</h1>
 
   <ul>
     <li v-for="user in users">{{ user.name }} - {{ user.email }}</li>
   </ul>
 </template>
+
+<style module>
+.heading {
+  color: blueviolet;
+}
+</style>
